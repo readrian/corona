@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -17,7 +20,9 @@
   <h3 id="totalRecGlobal">Weltweit genesen:</h3>
   <div class="chart-container" style="position: relative; height:30vh; width:50vw">
     <canvas id="infectionsDE" width="50%" height="25%"></canvas>
+    <canvas id="infectionsDEInc" width="50%" height="25%"></canvas>
     <canvas id="deathDE" width="50%" height="25%"></canvas>
+    <canvas id="deathDEInc" width="50%" height="25%"></canvas>
   </div>
 
   <script src="index.js"></script>
