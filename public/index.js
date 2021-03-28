@@ -51,16 +51,13 @@ async function getData() {
   const response = await fetch('/api');
   let data = await response.json();
   console.log(data)
-  console.log(data.de_data[1].Confirmed)
   let infData = []
   let date = []
   let death = []
-  let length = console.log(data.de_data.length)
-  for (let i = 0; i < length; i++) {
-    console.log(data.de_data[i].Confirmed)
+  for (let i = 0; i < data.de_data.length; i++) {
     infData.push(data.de_data[i].Confirmed)
-    date.push(data[i].de_data.Date.split('T')[0])
-    death.push(data[i].de_data.Deaths)
+    date.push(data.de_data[i].Date.split('T')[0])
+    death.push(data.de_data[i].Deaths)
   }
   console.log(date)
   console.log(infData)
