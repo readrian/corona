@@ -58,8 +58,6 @@ function makeChart(covid, id, label, path, color) {
   });
 }
 
-
-
 async function setup() {
   const covid = await getData();
   document.getElementById('totalInfGlobal').innerHTML = `Weltweite Infektionen: ${numberWithCommas(covid.global.Global.TotalConfirmed)}`;
