@@ -9,9 +9,11 @@ app.use(express.json({ limit: '1mb' }));
 
 
 app.get('/api', async (request, response) => {
-  const aq_url = `https://api.covid19api.com/dayone/country/germany`;
-  const aq_response = await fetch(aq_url);
-  const aq_data = await aq_response.json();
-  console.log(aq_data)
-  response.json(aq_data)
+  const de_url = `https://api.covid19api.com/dayone/country/germany`;
+  const sum_url = `https://api.covid19api.com/summary`;
+  const de_response = await fetch(de_url);
+  const sum_response = await fetch(sum_url);
+  const de_data = await de_response.json();
+  const sum_data = await sum_response.json();
+  response.json({ de_data, sum_data })
 })
