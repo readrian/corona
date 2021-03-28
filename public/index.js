@@ -50,13 +50,14 @@ async function setup() {
 async function getData() {
   const response = await fetch('/api');
   let data = await response.json();
+  console.log(data)
   let infData = []
   let date = []
   let death = []
-  for (let i = 0; i < data.length; i++) {
-    infData.push(data[i].Confirmed)
-    date.push(data[i].Date.split('T')[0])
-    death.push(data[i].Deaths)
+  for (let i = 0; i < data.de_data.length; i++) {
+    infData.push(data.de_data[i].Confirmed)
+    date.push(data.de_data[i].Date.split('T')[0])
+    death.push(data.de_data[i].Deaths)
   }
   console.log(date)
   console.log(infData)
