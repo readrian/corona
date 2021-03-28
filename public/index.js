@@ -24,11 +24,42 @@ async function setup() {
           borderColor: 'rgba(255, 99, 132, 1)',
           backgroundColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 1,
-          pointRadius: 0
+          pointRadius: 0,
+
         }
       ]
     },
-    options: {}
+    options: {
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var value = data.datasets[0].data[tooltipItem.index];
+            value = value.toString();
+            value = value.split(/(?=(?:...)*$)/);
+            value = value.join('.');
+            return value;
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            userCallback: function (value, index, values) {
+              // Convert the number to a string and splite the string every 3 charaters from the end
+              value = value.toString();
+              value = value.split(/(?=(?:...)*$)/);
+              value = value.join('.');
+              return value;
+            }
+          }
+        }],
+        xAxes: [{
+          ticks: {
+          }
+        }]
+      }
+    }
   });
 
   //Deaths
@@ -49,29 +80,56 @@ async function setup() {
         }
       ]
     },
-    options: {}
+    options: {
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var value = data.datasets[0].data[tooltipItem.index];
+            value = value.toString();
+            value = value.split(/(?=(?:...)*$)/);
+            value = value.join('.');
+            return value;
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            userCallback: function (value, index, values) {
+              // Convert the number to a string and splite the string every 3 charaters from the end
+              value = value.toString();
+              value = value.split(/(?=(?:...)*$)/);
+              value = value.join('.');
+              return value;
+            }
+          }
+        }],
+        xAxes: [{
+          ticks: {
+          }
+        }]
+      }
+    }
   });
-}
 
 
-async function getData() {
-  const response = await fetch('/api');
-  let data = await response.json();
-  console.log(data)
-  let infData = []
-  let date = []
-  let death = []
-  let global = data.sum_data
-  for (let i = 0; i < data.de_data.length; i++) {
-    infData.push(data.de_data[i].Confirmed)
-    date.push(data.de_data[i].Date.split('T')[0])
-    death.push(data.de_data[i].Deaths)
+  async function getData() {
+    const response = await fetch('/api');
+    let data = await response.json();
+    console.log(data)
+    let infData = []
+    let date = []
+    let death = []
+    let global = data.sum_data
+    for (let i = 0; i < data.de_data.length; i++) {
+      infData.push(data.de_data[i].Confirmed)
+      date.push(data.de_data[i].Date.split('T')[0])
+      death.push(data.de_data[i].Deaths)
+    }
+    console.log(date)
+    console.log(infData)
+    console.log(death)
+    return { date, infData, death, global }
   }
-  console.log(date)
-  console.log(infData)
-  console.log(death)
-  return { date, infData, death, global }
 }
-
-
-
