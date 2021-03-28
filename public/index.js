@@ -1,4 +1,3 @@
-
 setup()
 
 function numberWithCommas(x) {
@@ -51,6 +50,8 @@ function makeChart(covid, id, label, path, color) {
         }],
         xAxes: [{
           ticks: {
+            autoSkip: true,
+            maxTicksLimit: 15
           }
         }]
       }
@@ -76,7 +77,10 @@ async function setup() {
     let global = data.sum_data
     for (let i = 0; i < data.de_data.length; i++) {
       infData.push(data.de_data[i].Confirmed)
-      date.push(data.de_data[i].Date.split('T')[0])
+
+      let tag = data.de_data[i].Date.split(/[T-]+/)
+      date.push(`${tag[2]}.${tag[1]}.${tag[0]}`)
+
       death.push(data.de_data[i].Deaths)
     }
     console.log(date)
