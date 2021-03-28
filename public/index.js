@@ -1,10 +1,17 @@
 
 setup()
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 async function setup() {
   //Infections
   const itx = document.getElementById('infectionsDE').getContext('2d');
   const covid = await getData();
+  document.getElementById('totalInfGlobal').innerHTML = `Weltweite Infektionen: ${numberWithCommas(covid.global.Global.TotalConfirmed)}`;
+  document.getElementById('totalDeathGlobal').innerHTML = `Weltweite Tode: ${numberWithCommas(covid.global.Global.TotalDeaths)}`;
+  document.getElementById('totalRecGlobal').innerHTML = `Weltweit genesen: ${numberWithCommas(covid.global.Global.TotalRecovered)}`;
   const myChartI = new Chart(itx, {
     type: 'line',
     data: {
@@ -54,6 +61,7 @@ async function getData() {
   let infData = []
   let date = []
   let death = []
+  let global = data.sum_data
   for (let i = 0; i < data.de_data.length; i++) {
     infData.push(data.de_data[i].Confirmed)
     date.push(data.de_data[i].Date.split('T')[0])
@@ -62,7 +70,7 @@ async function getData() {
   console.log(date)
   console.log(infData)
   console.log(death)
-  return { date, infData, death }
+  return { date, infData, death, global }
 }
 
 
