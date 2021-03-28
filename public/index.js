@@ -61,15 +61,12 @@ function makeChart(covid, id, label, path, color) {
 
 
 async function setup() {
-  //Infections
-  const itx = document.getElementById('infectionsDE').getContext('2d');
   const covid = await getData();
   document.getElementById('totalInfGlobal').innerHTML = `Weltweite Infektionen: ${numberWithCommas(covid.global.Global.TotalConfirmed)}`;
   document.getElementById('totalDeathGlobal').innerHTML = `Weltweite Tode: ${numberWithCommas(covid.global.Global.TotalDeaths)}`;
   document.getElementById('totalRecGlobal').innerHTML = `Weltweit genesen: ${numberWithCommas(covid.global.Global.TotalRecovered)}`;
   makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)')
   makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)')
-
 
   async function getData() {
     const response = await fetch('/api');
