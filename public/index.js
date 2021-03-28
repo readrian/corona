@@ -82,6 +82,8 @@ async function setup() {
       date.push(`${tag[2]}.${tag[1]}.${tag[0]}`)
 
       death.push(data.de_data[i].Deaths)
+
+
     }
     console.log(date)
     console.log(infData)
