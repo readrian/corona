@@ -1,3 +1,4 @@
+let data
 setup()
 
 function numberWithCommas(x) {
@@ -80,7 +81,7 @@ async function setup() {
 
 async function getData() {
   const response = await fetch('/api');
-  let data = await response.json();
+  data = await response.json();
   console.log(data)
   let infData = []
   let infDataInc = []
@@ -158,9 +159,63 @@ info.onAdd = function (map) {
 };
 
 info.update = function (props) {
+  let wert
+  try {
+    switch (props.name) {
+      case 'Schleswig-Holstein':
+        wert = data.deIncident_data.features[0].attributes.cases7_bl_per_100k
+        break;
+      case 'Hamburg':
+        wert = data.deIncident_data.features[1].attributes.cases7_bl_per_100k
+        break;
+      case 'Niedersachsen':
+        wert = data.deIncident_data.features[2].attributes.cases7_bl_per_100k
+        break;
+      case 'Bremen':
+        wert = data.deIncident_data.features[3].attributes.cases7_bl_per_100k
+        break;
+      case 'Nordrhein-Westfahlen':
+        wert = data.deIncident_data.features[4].attributes.cases7_bl_per_100k
+        break;
+      case 'Hessen':
+        wert = data.deIncident_data.features[5].attributes.cases7_bl_per_100k
+        break;
+      case 'Rheinland-Pfalz':
+        wert = data.deIncident_data.features[6].attributes.cases7_bl_per_100k
+        break;
+      case 'Baden-Württemberg':
+        wert = data.deIncident_data.features[7].attributes.cases7_bl_per_100k
+        break;
+      case 'Bayern':
+        wert = data.deIncident_data.features[8].attributes.cases7_bl_per_100k
+        break;
+      case 'Saarland':
+        wert = data.deIncident_data.features[9].attributes.cases7_bl_per_100k
+        break;
+      case 'Berlin':
+        wert = data.deIncident_data.features[10].attributes.cases7_bl_per_100k
+        break;
+      case 'Brandenburg':
+        wert = data.deIncident_data.features[11].attributes.cases7_bl_per_100k
+        break;
+      case 'Mecklenburg-Vorpommern':
+        wert = data.deIncident_data.features[12].attributes.cases7_bl_per_100k
+        break;
+      case 'Sachsen':
+        wert = data.deIncident_data.features[13].attributes.cases7_bl_per_100k
+        break;
+      case 'Sachsen-Anhalt':
+        wert = data.deIncident_data.features[14].attributes.cases7_bl_per_100k
+        break;
+      case 'Thüringen':
+        wert = data.deIncident_data.features[15].attributes.cases7_bl_per_100k
+        break;
+    }
+  } catch { }
   this._div.innerHTML = '<h4>Deutschland Covid19 Inzidenzwert</h4>' + (props ?
-    '<b>' + props.name + '</b><br />' + 'Inzidenzwert: ' + props.density + '</sup>'
+    '<b>' + props.name + '</b><br />' + 'Inzidenzwert: ' + wert + '</sup>'
     : 'Über Bundesland fahren');
+  console.log(wert)
 };
 
 info.addTo(map);
