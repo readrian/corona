@@ -5,14 +5,14 @@ html,
     }
 
     #map {
-      width: 600px;
-      height: 400px;
+      width: 50%;
+      height: 70%;
     }
 
-    #map {
+    /* #map {
       width: 800px;
       height: 500px;
-    }
+    } */
 
     .info {
       padding: 6px 8px;
