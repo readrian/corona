@@ -1,3 +1,4 @@
+let data
 setup()
 
 function numberWithCommas(x) {
@@ -76,12 +77,238 @@ async function setup() {
   makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date)
   makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date)
   makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date)
+
+
+  var map = L.map('map').setView([51.2, 10.3], 5.5);
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+    {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox/light-v9',
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(map);
+
+
+  // control that shows state info on hover
+  var info = L.control();
+
+  info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+  info.update = function (props) {
+    let wert
+    try {
+      switch (props.name) {
+        case 'Schleswig-Holstein':
+          wert = data.deIncident_data.features[0].attributes.cases7_bl_per_100k
+          break;
+        case 'Hamburg':
+          wert = data.deIncident_data.features[1].attributes.cases7_bl_per_100k
+          break;
+        case 'Niedersachsen':
+          wert = data.deIncident_data.features[2].attributes.cases7_bl_per_100k
+          break;
+        case 'Bremen':
+          wert = data.deIncident_data.features[3].attributes.cases7_bl_per_100k
+          break;
+        case 'Nordrhein-Westfalen':
+          wert = data.deIncident_data.features[4].attributes.cases7_bl_per_100k
+          break;
+        case 'Hessen':
+          wert = data.deIncident_data.features[5].attributes.cases7_bl_per_100k
+          break;
+        case 'Rheinland-Pfalz':
+          wert = data.deIncident_data.features[6].attributes.cases7_bl_per_100k
+          break;
+        case 'Baden-Württemberg':
+          wert = data.deIncident_data.features[7].attributes.cases7_bl_per_100k
+          break;
+        case 'Bayern':
+          wert = data.deIncident_data.features[8].attributes.cases7_bl_per_100k
+          break;
+        case 'Saarland':
+          wert = data.deIncident_data.features[9].attributes.cases7_bl_per_100k
+          break;
+        case 'Berlin':
+          wert = data.deIncident_data.features[10].attributes.cases7_bl_per_100k
+          break;
+        case 'Brandenburg':
+          wert = data.deIncident_data.features[11].attributes.cases7_bl_per_100k
+          break;
+        case 'Mecklenburg-Vorpommern':
+          wert = data.deIncident_data.features[12].attributes.cases7_bl_per_100k
+          break;
+        case 'Sachsen':
+          wert = data.deIncident_data.features[13].attributes.cases7_bl_per_100k
+          break;
+        case 'Sachsen-Anhalt':
+          wert = data.deIncident_data.features[14].attributes.cases7_bl_per_100k
+          break;
+        case 'Thüringen':
+          wert = data.deIncident_data.features[15].attributes.cases7_bl_per_100k
+          break;
+      }
+    } catch { }
+    this._div.innerHTML = '<h4>Deutschland Covid19 Inzidenzwert</h4>' + (props ?
+      '<b>' + props.name + '</b><br />' + 'Inzidenzwert: ' + wert + '</sup>'
+      : 'Über Bundesland fahren');
+    console.log(wert)
+  };
+
+  info.addTo(map);
+
+
+  // get color depending on population density value
+  function getColor(d) {
+    return d > 250 ? '#800026' :
+      d > 200 ? '#BD0026' :
+        d > 170 ? '#E31A1C' :
+          d > 130 ? '#FC4E2A' :
+            d > 100 ? '#FD8D3C' :
+              d > 50 ? '#FEB24C' :
+                d > 30 ? '#FED976' :
+                  '#FFEDA0';
+  }
+
+  function style(feature) {
+    let wert
+    try {
+      switch (feature.properties.name) {
+        case 'Schleswig-Holstein':
+          wert = data.deIncident_data.features[0].attributes.cases7_bl_per_100k
+          break;
+        case 'Hamburg':
+          wert = data.deIncident_data.features[1].attributes.cases7_bl_per_100k
+          break;
+        case 'Niedersachsen':
+          wert = data.deIncident_data.features[2].attributes.cases7_bl_per_100k
+          break;
+        case 'Bremen':
+          wert = data.deIncident_data.features[3].attributes.cases7_bl_per_100k
+          break;
+        case 'Nordrhein-Westfalen':
+          wert = data.deIncident_data.features[4].attributes.cases7_bl_per_100k
+          break;
+        case 'Hessen':
+          wert = data.deIncident_data.features[5].attributes.cases7_bl_per_100k
+          break;
+        case 'Rheinland-Pfalz':
+          wert = data.deIncident_data.features[6].attributes.cases7_bl_per_100k
+          break;
+        case 'Baden-Württemberg':
+          wert = data.deIncident_data.features[7].attributes.cases7_bl_per_100k
+          break;
+        case 'Bayern':
+          wert = data.deIncident_data.features[8].attributes.cases7_bl_per_100k
+          break;
+        case 'Saarland':
+          wert = data.deIncident_data.features[9].attributes.cases7_bl_per_100k
+          break;
+        case 'Berlin':
+          wert = data.deIncident_data.features[10].attributes.cases7_bl_per_100k
+          break;
+        case 'Brandenburg':
+          wert = data.deIncident_data.features[11].attributes.cases7_bl_per_100k
+          break;
+        case 'Mecklenburg-Vorpommern':
+          wert = data.deIncident_data.features[12].attributes.cases7_bl_per_100k
+          break;
+        case 'Sachsen':
+          wert = data.deIncident_data.features[13].attributes.cases7_bl_per_100k
+          break;
+        case 'Sachsen-Anhalt':
+          wert = data.deIncident_data.features[14].attributes.cases7_bl_per_100k
+          break;
+        case 'Thüringen':
+          wert = data.deIncident_data.features[15].attributes.cases7_bl_per_100k
+          break;
+      }
+    } catch { console.log('error') }
+    console.log(data)
+    // console.log(wert)
+    return {
+      weight: 2,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.7,
+      fillColor: getColor(wert)
+    };
+  }
+
+  function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+      weight: 5,
+      color: '#666',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+      layer.bringToFront();
+    }
+
+    info.update(layer.feature.properties);
+  }
+
+  var geojson;
+
+  function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+    info.update();
+  }
+
+  function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+  }
+
+  function onEachFeature(feature, layer) {
+    layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
+      click: zoomToFeature,
+    });
+  }
+
+  geojson = L.geoJson(statesData, {
+    style: style,
+    onEachFeature: onEachFeature
+  }).addTo(map);
+
+  map.attributionControl.addAttribution('Daten von &copy; <a href="https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0/geoservice">COVID-19 Datenhub</a>');
+
+
+  var legend = L.control({ position: 'bottomright' });
+
+  legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+      grades = [0, 30, 50, 100, 130, 170, 200, 250],
+      labels = [],
+      from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+      from = grades[i]; to = grades[i + 1]; labels.push('<i style="background:' +
+        getColor(from + 1) + '"></i> ' + from + (to ? '&ndash;' + to : '+'));
+    } div.innerHTML = labels.join('<br>');
+    return div;
+  };
+
+  legend.addTo(map);
 }
 
 async function getData() {
   const response = await fetch('/api');
-  let data = await response.json();
-  console.log(data)
+  data = await response.json();
+  // console.log(data)
   let infData = []
   let infDataInc = []
   let date = []
@@ -127,9 +354,11 @@ async function getData() {
   // console.log(date)
   // console.log(infData)
   // console.log(death)
-  console.log(weekNumber)
-  console.log(deathInc)
+  // console.log(weekNumber)
+  // console.log(deathInc)
   // console.log(infDataInc)
 
   return { date, infData, death, global, weekNumber, deathInc, infDataInc }
 }
+
+
