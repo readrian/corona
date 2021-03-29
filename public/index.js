@@ -53,6 +53,15 @@ function makeChart(covid, id, label, path, color, type, xAsis) {
             maxTicksLimit: 15
           }
         }]
+      },
+      tooltips: {
+        cornerRadius: 0,
+        caretSize: 0,
+        xPadding: 16,
+        yPadding: 10,
+        backgroundColor: 'rgba(12, 12, 12, 0.9)',
+        titleFontStyle: 'normal',
+        titleMarginBottom: 15,
       }
     }
   });
