@@ -4,12 +4,12 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-function makeChart(covid, id, label, path, color, type) {
+function makeChart(covid, id, label, path, color, type, xAsis) {
   const mtx = document.getElementById(id).getContext('2d');
   const myChartNew = new Chart(mtx, {
     type: type,
     data: {
-      labels: covid.date,
+      labels: xAsis,
       datasets: [
         {
           label: label,
@@ -19,7 +19,6 @@ function makeChart(covid, id, label, path, color, type) {
           backgroundColor: color,
           borderWidth: 1,
           pointRadius: 0,
-
         }
       ]
     },
@@ -64,10 +63,10 @@ async function setup() {
   document.getElementById('totalInfGlobal').innerHTML = `Weltweite Infektionen: ${numberWithCommas(covid.global.Global.TotalConfirmed)}`;
   document.getElementById('totalDeathGlobal').innerHTML = `Weltweite Tode: ${numberWithCommas(covid.global.Global.TotalDeaths)}`;
   document.getElementById('totalRecGlobal').innerHTML = `Weltweit genesen: ${numberWithCommas(covid.global.Global.TotalRecovered)}`;
-  makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line')
-  makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar')
-  makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line')
-  makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar')
+  makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line', covid.date)
+  makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date)
+  makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date)
+  makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date)
 }
 
 async function getData() {
@@ -81,8 +80,7 @@ async function getData() {
   let deathInc = []
   let global = data.sum_data
   let weekNumber = []
-  let deathWeekly = []
-  let counter
+
   for (let i = 0; i < data.de_data.length; i++) {
     infData.push(data.de_data[i].Confirmed)
 
@@ -116,11 +114,13 @@ async function getData() {
     weekNumber.push(moment(date[i], "DD-MM-YYYY").week())
 
   }
+
   // console.log(date)
   // console.log(infData)
   // console.log(death)
   console.log(weekNumber)
   console.log(deathInc)
-  console.log(infDataInc)
+  // console.log(infDataInc)
+
   return { date, infData, death, global, weekNumber, deathInc, infDataInc }
 }
