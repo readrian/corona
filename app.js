@@ -18,5 +18,21 @@ app.get('/api', async (request, response) => {
   const de_data = await de_response.json();
   const sum_data = await sum_response.json();
   const deIncident_data = await deIncident_response.json();
-  response.json({ de_data, sum_data, deIncident_data })
+
+
+  let deathsM = [2, 3, 31, 87, 276, 1397, 4047, 9315, 17499, 5780]
+  let deathsF = [6, 0, 21, 50, 137, 578, 1778, 5197, 17199, 11349]
+
+
+  let ageGroup = ['0 - 9', '10 - 19', '20 - 29', '30 - 39', '40 - 49', '50 - 59', '60 - 69', '70 - 79', '80 - 89', '90+']
+
+  let deathsAgeSex = {
+    deaths: {
+      deathsM,
+      deathsF
+    },
+    ageGroup
+  }
+
+  response.json({ de_data, sum_data, deIncident_data, deathsAgeSex })
 })

@@ -23,6 +23,7 @@ function makeChart(covid, id, label, path, color, type, xAsis) {
         }
       ]
     },
+
     options: {
       tooltips: {
         callbacks: {
@@ -68,12 +69,105 @@ function makeChart(covid, id, label, path, color, type, xAsis) {
   });
 }
 
+function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
+  const ctx = document.getElementById(id).getContext('2d');
+  const myChartNew = new Chart(ctx, {
+    type: type,
+    data: {
+      labels: xAsis,
+      datasets: [
+        {
+          label: 'Covid Tode nach Alter Männer',
+          data: path,
+          fill: true,
+          borderColor: 'rgba(12, 12, 12, 0.9)',
+          backgroundColor: 'rgba(12, 12, 12, 0.9)',
+          borderWidth: 1,
+          pointRadius: 0,
+        }, {
+          label: 'Covid Tode nach Alter Frauen',
+          data: pathF,
+          fill: true,
+          borderColor: color,
+          backgroundColor: color,
+          borderWidth: 1,
+          pointRadius: 0,
+        }
+      ]
+    },
+
+    options: {
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var value = data.datasets[0].data[tooltipItem.index];
+            value = value.toString();
+            value = value.split(/(?=(?:...)*$)/);
+            value = value.join('.');
+            return value;
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            userCallback: function (value, index, values) {
+              // Convert the number to a string and splite the string every 3 charaters from the end
+              value = value.toString();
+              value = value.split(/(?=(?:...)*$)/);
+              value = value.join('.');
+              return value;
+            }
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: 15
+          }
+        }]
+      },
+      tooltips: {
+        cornerRadius: 0,
+        caretSize: 0,
+        xPadding: 16,
+        yPadding: 10,
+        backgroundColor: 'rgba(12, 12, 12, 0.9)',
+        titleFontStyle: 'normal',
+        titleMarginBottom: 15,
+      },
+      "animation": {
+        "duration": 1,
+        "onComplete": function () {
+          var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+
+          ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
+
+          this.data.datasets.forEach(function (dataset, i) {
+            var meta = chartInstance.controller.getDatasetMeta(i);
+            meta.data.forEach(function (bar, index) {
+              var data = dataset.data[index];
+              ctx.fillText(data, bar._model.x, bar._model.y - 5);
+            });
+          });
+        }
+      },
+    },
+  });
+}
+
 async function setup() {
   const covid = await getData();
   document.getElementById('totalInfGlobal').innerHTML = `Weltweite Infektionen: ${numberWithCommas(covid.global.Global.TotalConfirmed)}`;
   document.getElementById('totalDeathGlobal').innerHTML = `Weltweite Tode: ${numberWithCommas(covid.global.Global.TotalDeaths)}`;
   document.getElementById('totalRecGlobal').innerHTML = `Weltweit genesen: ${numberWithCommas(covid.global.Global.TotalRecovered)}`;
   makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line', covid.date)
+  console.log(covid)
+  makeDoubleChart(covid, 'deathsAge', 'Covid Tote nach Alter und Geschlecht', covid.deathsAgeSex.deaths.deathsM, 'rgba(255, 99, 132, 1)', 'bar', covid.deathsAgeSex.ageGroup, covid.deathsAgeSex.deaths.deathsF)
   makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date)
   makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date)
   makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date)
@@ -350,6 +444,7 @@ async function getData() {
   let deathInc = []
   let global = data.sum_data
   let weekNumber = []
+  let deathsAgeSex = data.deathsAgeSex
 
   for (let i = 0; i < data.de_data.length; i++) {
     infData.push(data.de_data[i].Confirmed)
@@ -385,14 +480,7 @@ async function getData() {
 
   }
 
-  // console.log(date)
-  // console.log(infData)
-  // console.log(death)
-  // console.log(weekNumber)
-  // console.log(deathInc)
-  // console.log(infDataInc)
-
-  return { date, infData, death, global, weekNumber, deathInc, infDataInc }
+  return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex }
 }
 
 
