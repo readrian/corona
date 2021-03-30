@@ -468,11 +468,8 @@ async function getData() {
       }
       infDataInc.push(data.de_data[i].Confirmed - data.de_data[i - 1].Confirmed + Math.abs(temp))
     }
-
     weekNumber.push(moment(date[i], "DD-MM-YYYY").week())
-
   }
-
   return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex }
 }
 
