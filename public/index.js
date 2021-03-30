@@ -79,7 +79,7 @@ async function setup() {
   makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date)
 
 
-  var map = L.map('map').setView([51.2, 10.3], 5.5);
+  var map = L.map('map').setView([51.3, 10.3], 5.5);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
     {
@@ -215,12 +215,6 @@ async function setup() {
           break;
         case 'Brandenburg':
           wert = data.deIncident_data.features[11].attributes.cases7_bl_per_100k
-          break;
-        case 'Mecklenburg-Vorpommern':
-          wert = data.deIncident_data.features[12].attributes.cases7_bl_per_100k
-          break;
-        case 'Sachsen':
-          wert = data.deIncident_data.features[13].attributes.cases7_bl_per_100k
           break;
         case 'Sachsen-Anhalt':
           wert = data.deIncident_data.features[14].attributes.cases7_bl_per_100k
