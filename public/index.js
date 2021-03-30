@@ -28,7 +28,7 @@ function makeChart(covid, id, label, path, color, type, xAsis) {
       tooltips: {
         callbacks: {
           label: function (tooltipItem, data) {
-            var value = data.datasets[0].data[tooltipItem.index];
+            let value = data.datasets[0].data[tooltipItem.index];
             value = value.toString();
             value = value.split(/(?=(?:...)*$)/);
             value = value.join('.');
@@ -166,7 +166,11 @@ async function setup() {
   makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date)
 
 
-  var map = L.map('map').setView([51.2, 10.3], 5.5);
+  let map = L.map('map', {
+    wheelPxPerZoomLevel: 200,
+    zoomDelta: 0.5,
+    zoomSnap: 0.01,
+  }).setView([51.2, 10.3], 5.45);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
     {
@@ -180,7 +184,7 @@ async function setup() {
 
 
   // control that shows state info on hover
-  var info = L.control();
+  let info = L.control();
 
   info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info');
@@ -364,7 +368,7 @@ async function setup() {
   }
 
   function highlightFeature(e) {
-    var layer = e.target;
+    let layer = e.target;
 
     layer.setStyle({
       weight: 5,
@@ -380,7 +384,7 @@ async function setup() {
     info.update(layer.feature.properties);
   }
 
-  var geojson;
+  let geojson;
 
   function resetHighlight(e) {
     geojson.resetStyle(e.target);
@@ -407,16 +411,16 @@ async function setup() {
   map.attributionControl.addAttribution('Daten von &copy; <a href="https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0/geoservice">COVID-19 Datenhub</a>');
 
 
-  var legend = L.control({ position: 'bottomright' });
+  let legend = L.control({ position: 'bottomright' });
 
   legend.onAdd = function (map) {
 
-    var div = L.DomUtil.create('div', 'info legend'),
+    let div = L.DomUtil.create('div', 'info legend'),
       grades = [0, 30, 50, 100, 130, 170, 200, 250],
       labels = [],
       from, to;
 
-    for (var i = 0; i < grades.length; i++) {
+    for (let i = 0; i < grades.length; i++) {
       from = grades[i]; to = grades[i + 1]; labels.push('<i style="background:' +
         getColor(from + 1) + '"></i> ' + from + (to ? '&ndash;' + to : '+'));
     } div.innerHTML = labels.join('<br>');
