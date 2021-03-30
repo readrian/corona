@@ -104,76 +104,93 @@ async function setup() {
   info.update = function (props) {
     let wertInzidenz
     let wertInzidenzAbs
+    let wertTodAbs
     try {
       switch (props.name) {
         case 'Schleswig-Holstein':
           wertInzidenz = data.deIncident_data.features[0].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[0].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[0].attributes.death7_bl
           break;
         case 'Hamburg':
           wertInzidenz = data.deIncident_data.features[1].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[1].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[0].attributes.death7_bl
           break;
         case 'Niedersachsen':
           wertInzidenz = data.deIncident_data.features[2].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[2].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[2].attributes.death7_bl
           break;
         case 'Bremen':
           wertInzidenz = data.deIncident_data.features[3].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[3].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[3].attributes.death7_bl
           break;
         case 'Nordrhein-Westfalen':
           wertInzidenz = data.deIncident_data.features[4].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[4].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[4].attributes.death7_bl
           break;
         case 'Hessen':
           wertInzidenz = data.deIncident_data.features[5].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[5].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[5].attributes.death7_bl
           break;
         case 'Rheinland-Pfalz':
           wertInzidenz = data.deIncident_data.features[6].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[6].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[6].attributes.death7_bl
           break;
         case 'Baden-Württemberg':
           wertInzidenz = data.deIncident_data.features[7].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[7].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[7].attributes.death7_bl
           break;
         case 'Bayern':
           wertInzidenz = data.deIncident_data.features[8].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[8].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[8].attributes.death7_bl
           break;
         case 'Saarland':
           wertInzidenz = data.deIncident_data.features[9].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[9].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[9].attributes.death7_bl
           break;
         case 'Berlin':
           wertInzidenz = data.deIncident_data.features[10].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[10].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[10].attributes.death7_bl
           break;
         case 'Brandenburg':
           wertInzidenz = data.deIncident_data.features[11].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[11].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[11].attributes.death7_bl
           break;
         case 'Mecklenburg-Vorpommern':
           wertInzidenz = data.deIncident_data.features[12].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[12].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[12].attributes.death7_bl
           break;
         case 'Sachsen':
           wertInzidenz = data.deIncident_data.features[13].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[13].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[13].attributes.death7_bl
           break;
         case 'Sachsen-Anhalt':
           wertInzidenz = data.deIncident_data.features[14].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[14].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[14].attributes.death7_bl
           break;
         case 'Thüringen':
           wertInzidenz = data.deIncident_data.features[15].attributes.cases7_bl_per_100k
           wertInzidenzAbs = data.deIncident_data.features[15].attributes.cases7_bl
+          wertTodAbs = data.deIncident_data.features[15].attributes.death7_bl
           break;
       }
     } catch { }
-    this._div.innerHTML = '<h4>Deutschland Covid19 Inzidenzwert</h4>' + (props ?
-      '<b>' + props.name + '</b><br />' + 'Inzidenzwert: ' + wertInzidenz + '</b><br />' + 'Fälle letzte 7 Tage: ' + wertInzidenzAbs + '</sup>'
+    this._div.innerHTML = '<h4>Deutschland Covid19 Daten</h4>' + (props ?
+      '<b>' + props.name + '</b><br /><b>' + wertInzidenz.toFixed(2).replace('.', ',') + '</b>' + ' (Inzidenzwert)' + '<br />' + '<b>' + numberWithCommas(wertInzidenzAbs) + '</b >' + ' (Fälle letzte 7 Tage)' + '<br /><b>' + numberWithCommas(wertTodAbs) + '</b>' + ' (Tode letzte 7 Tage)' + '</sup > '
       : 'Über Bundesland fahren');
     console.log(wertInzidenz)
   };
