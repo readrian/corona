@@ -164,7 +164,8 @@ async function setup() {
   makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date)
   makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date)
   makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date)
-
+  console.log(covid.timeStamp)
+  document.getElementById('lastSync').innerHTML = data.timeStamp
 
   let map = L.map('map', {
     wheelPxPerZoomLevel: 200,
@@ -283,7 +284,6 @@ async function setup() {
     this._div.innerHTML = '<h4>Deutschland Covid19 Daten</h4>' + (props ?
       '<b>' + props.name + '</b><br /><b>' + wertInzidenz.toFixed(2).replace('.', ',') + '</b>' + ' (Inzidenzwert)' + '<br />' + '<b>' + numberWithCommas(wertInzidenzAbs) + '</b >' + ' (Fälle letzte 7 Tage)' + '<br /><b>' + numberWithCommas(wertTodAbs) + '</b>' + ' (Tode letzte 7 Tage)' + '</sup > '
       : 'Über Bundesland fahren');
-    console.log(wertInzidenz)
   };
 
   info.addTo(map);
@@ -355,7 +355,6 @@ async function setup() {
           break;
       }
     } catch { console.log('error') }
-    console.log(data)
     // console.log(wert)
     return {
       weight: 2,
