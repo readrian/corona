@@ -112,13 +112,6 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
         yAxes: [{
           ticks: {
             beginAtZero: true,
-            userCallback: function (value, index, values) {
-              // Convert the number to a string and splite the string every 3 charaters from the end
-              value = value.toString();
-              value = value.split(/(?=(?:...)*$)/);
-              value = value.join('.');
-              return value;
-            }
           }
         }],
         xAxes: [{
@@ -151,7 +144,7 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
             var meta = chartInstance.controller.getDatasetMeta(i);
             meta.data.forEach(function (bar, index) {
               var data = dataset.data[index];
-              ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              ctx.fillText(data, bar._model.x + 20, bar._model.y + 7);
             });
           });
         }
@@ -167,7 +160,7 @@ async function setup() {
   document.getElementById('totalRecGlobal').innerHTML = `Weltweit genesen: ${numberWithCommas(covid.global.Global.TotalRecovered)}`;
   makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line', covid.date)
   console.log(covid)
-  makeDoubleChart(covid, 'deathsAge', 'Covid Tote nach Alter und Geschlecht', covid.deathsAgeSex.deaths.deathsM, 'rgba(255, 99, 132, 1)', 'bar', covid.deathsAgeSex.ageGroup, covid.deathsAgeSex.deaths.deathsF)
+  makeDoubleChart(covid, 'deathsAge', 'Covid Tote nach Alter und Geschlecht', covid.deathsAgeSex.deaths.deathsM, 'rgba(255, 99, 132, 1)', 'horizontalBar', covid.deathsAgeSex.ageGroup, covid.deathsAgeSex.deaths.deathsF)
   makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date)
   makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date)
   makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date)

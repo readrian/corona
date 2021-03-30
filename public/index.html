@@ -20,21 +20,23 @@
 </head>
 
 <body>
-  <h1>Corona Statistik</h1>
-  <h3 id="totalInfGlobal">Weltweite Infektionen:</h3>
-  <h3 id="totalDeathGlobal">Weltweite Tode:</h3>
-  <h3 id="totalRecGlobal">Weltweit genesen:</h3>
+  <div id="information">
+    <h1>Corona Statistik</h1>
+    <h3 id="totalInfGlobal">Weltweite Infektionen:</h3>
+    <h3 id="totalDeathGlobal">Weltweite Tode:</h3>
+    <h3 id="totalRecGlobal">Weltweit genesen:</h3>
+  </div>
   <div id='map'></div>
-  <div class="chart-container" style="position: relative; height:30vh; width:50vw">
-    <canvas id="deathsAge" width="50%" height="25%"></canvas>
+  <div class="chart-container" style="position: relative; height:50vh; width:70vw">
+    <canvas class="chart" id="deathsAge" width="50%" height="25%"></canvas>
     <p>Zuletzt aktualisiert: 23.03.2021 <a
         href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/Maerz_2021/2021-03-23-de.pdf?__blob=publicationFile">Täglicher
         Lagebericht des RKI zur Coronavirus-Krankheit-2019
       </a></p>
-    <canvas id="infectionsDE" width="50%" height="25%"></canvas>
-    <canvas id="infectionsDEInc" width="50%" height="25%"></canvas>
-    <canvas id="deathDE" width="50%" height="25%"></canvas>
-    <canvas id="deathDEInc" width="50%" height="25%"></canvas>
+    <canvas id="infectionsDE" class="chart" width="50%" height="25%"></canvas>
+    <canvas id="infectionsDEInc" class="chart" width="50%" height="25%"></canvas>
+    <canvas id="deathDE" class="chart" width="50%" height="25%"></canvas>
+    <canvas id="deathDEInc" class="chart" width="50%" height="25%"></canvas>
   </div>
   <script type="text/javascript" src="statesData.js"></script>
   <script src="index.js"></script>
