@@ -42,7 +42,7 @@ async function getAPI() {
   let sum_data_temp = await sum_response.json();
   let deIncident_data_temp = await deIncident_response.json();
   let timeStamp_temp = lastSync()
-  if (sum_data_temp.Global.TotalConfirmed !== 0) {
+  if (sum_data_temp.Global.TotalConfirmed !== 0 && de_data_temp !== undefined) {
     de_data = de_data_temp
     sum_data = sum_data_temp
     deIncident_data = deIncident_data_temp

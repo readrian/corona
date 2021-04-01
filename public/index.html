@@ -42,7 +42,7 @@
   </section>
 
   <div id='map'></div>
-  <div id="information" class="container my-2">
+  <div id="information" class="container my-md-4">
     <div class="row m-2">
       <div class="col-sm card mt-2 mx-sm-2">
         <h5 class="mt-2">Coronavirus-Fälle in Deutschland:</h5>
@@ -58,18 +58,20 @@
       </div>
     </div>
   </div>
-  <div class="chart-container">
-    <div class="container">
-      <canvas class="chart" id="deathsAge"></canvas>
-    </div>
-    <p>Zuletzt aktualisiert: 23.03.2021 <a
+  <div class="chart-container-double container-fluid">
+    <canvas class="chart" id="deathsAge"></canvas>
+  </div>
+  <div class="container">
+    <p id="lastUpdate">Zuletzt aktualisiert: 23.03.2021 <a
         href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/Maerz_2021/2021-03-23-de.pdf?__blob=publicationFile">Täglicher
         Lagebericht des RKI zur Coronavirus-Krankheit-2019
-      </a></p>
-    <canvas id="infectionsDE" class="chart"></canvas>
-    <canvas id="infectionsDEInc" class="chart"></canvas>
-    <canvas id="deathDE" class="chart"></canvas>
-    <canvas id="deathDEInc" class="chart"></canvas>
+  </div>
+  </a></p>
+  <div class="chart-container container-fluid">
+    <canvas id="infectionsDE"></canvas>
+    <canvas id="infectionsDEInc"></canvas>
+    <canvas id="deathDE"></canvas>
+    <canvas id="deathDEInc"></canvas>
   </div>
 
   <script type="text/javascript" src="statesData.js"></script>

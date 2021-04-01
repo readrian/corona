@@ -70,7 +70,8 @@ function makeChart(covid, id, label, path, color, type, xAsis, bColor) {
       },
       legend: {
         onClick: (e) => e.stopPropagation()
-      }
+      },
+      maintainAspectRatio: false
     }
   });
 }
@@ -160,7 +161,8 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
       },
       legend: {
         onClick: (e) => e.stopPropagation()
-      }
+      },
+      maintainAspectRatio: false
     },
   });
 }
