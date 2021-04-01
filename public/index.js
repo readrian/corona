@@ -64,6 +64,9 @@ function makeChart(covid, id, label, path, color, type, xAsis) {
         backgroundColor: 'rgba(12, 12, 12, 0.9)',
         titleFontStyle: 'normal',
         titleMarginBottom: 15,
+      },
+      legend: {
+        onClick: (e) => e.stopPropagation()
       }
     }
   });
@@ -149,6 +152,9 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
           });
         }
       },
+      legend: {
+        onClick: (e) => e.stopPropagation()
+      }
     },
   });
 }
