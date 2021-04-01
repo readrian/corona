@@ -180,6 +180,7 @@ async function setup() {
   document.getElementById('lastSync').innerHTML = data.timeStamp
 
   let map = L.map('map', {
+    gestureHandling: true,
     wheelPxPerZoomLevel: 200,
     zoomDelta: 0.5,
     zoomSnap: 0.01,
