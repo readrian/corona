@@ -179,12 +179,18 @@ async function setup() {
   console.log(data.timeStamp)
   document.getElementById('lastSync').innerHTML = data.timeStamp
 
+  var southWest = new L.LatLng(47.1, 5.728),
+    northEast = new L.LatLng(55.224, 15.275),
+    bounds = new L.LatLngBounds(southWest, northEast);
+
   let map = L.map('map', {
     gestureHandling: true,
     wheelPxPerZoomLevel: 200,
     zoomDelta: 0.5,
     zoomSnap: 0.01,
-  }).setView([51.2, 10.3], 5.45);
+  }).fitBounds(bounds);
+
+
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
     {
