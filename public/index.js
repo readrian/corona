@@ -131,7 +131,7 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
         titleMarginBottom: 15,
       },
       "animation": {
-        "duration": 1,
+        "duration": 0,
         "onComplete": function () {
           var chartInstance = this.chart,
             ctx = chartInstance.ctx;
@@ -164,7 +164,7 @@ async function setup() {
   makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date)
   makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date)
   makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date)
-  console.log(covid.timeStamp)
+  console.log(data.timeStamp)
   document.getElementById('lastSync').innerHTML = data.timeStamp
 
   let map = L.map('map', {
