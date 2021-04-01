@@ -49,7 +49,7 @@ async function getAPI() {
     timeStamp = timeStamp_temp
     console.log('syncinc...')
   } else {
-    console.warn('Tried syncing, but received incalid response from: https://api.covid19api.com/summary')
+    console.warn('Tried syncing, but received invalid response')
   }
 }
 

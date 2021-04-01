@@ -60,7 +60,36 @@ html,
       width: 80%;
     }
 
-    @media (max-width: 575px) {
+    #worldwide1 {
+      background-color: #E97F7F;
+      padding-bottom: 1px;
+      padding-right: 3px;
+      padding-left: 3px;
+      border-radius: 5px;
+    }
+    #worldwide2 {
+      background-color: #d1ffd7;
+      padding-bottom: 1px;
+      padding-right: 3px;
+      padding-left: 3px;
+      border-radius: 5px;
+    }
+    #worldwide3 {
+      background-color: #212529;
+      padding-bottom: 1px;
+      padding-right: 3px;
+      padding-left: 3px;
+      border-radius: 5px;
+      color: #FFF
+    }
+    
+    @media (max-width: 574px) {
+      .cardData{
+        font-size: 5vw;
+      }
+    }
+
+    @media (min-width: 575px) {
       .chart-container-double{
       height: 80vh;
       width: 100%;
@@ -68,13 +97,37 @@ html,
       height: 60vh;
       width: 100%;
       }
+      .cardData {
+      font-size: 2vw;
     }
-    @media (max-width: 767px) {
+    }
+    @media (min-width: 767px) {
       .chart-container-double{
       height: 60vh;
       width: 100%;
       } .chart-container{
       height: 40vh;
       width: 100%;
+      }
+      .cardData {
+      font-size: 2.2vw;
+    }
+  }
+
+    @media (min-width: 991px) {
+        .cardData {
+        font-size: 2.3vw;
+      }
+    }
+
+    @media (min-width: 1200px) {
+        .cardData {
+        font-size: 2.05vw;
+      }
+    }
+    
+    @media (min-width: 1400px) {
+        .cardData {
+        font-size: 2.2vw;
       }
     }
