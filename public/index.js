@@ -50,6 +50,9 @@ function makeChart(covid, id, label, path, color, type, xAsis, bColor) {
           }
         }],
         xAxes: [{
+          gridLines: {
+            display: false
+          },
           ticks: {
             autoSkip: true,
             maxTicksLimit: 15
@@ -118,6 +121,9 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
           }
         }],
         xAxes: [{
+          gridLines: {
+            display: false
+          },
           ticks: {
             autoSkip: true,
             maxTicksLimit: 15
