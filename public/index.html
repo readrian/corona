@@ -28,7 +28,18 @@
 </head>
 
 <body>
-  <h1>Corona Statistik</h1>
+  <section>
+    <div class="container-fluid">
+      <div class="row mx-md-3">
+        <div class="col-sm-6 text-start">
+          <h1 class="pl-3">Corona Statistik</h1>
+        </div>
+        <div class="col-sm-6 float-end row-sm">
+          <p id="lastSync" class="float-sm-end"></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div id='map'></div>
   <div id="information" class="container my-2">
@@ -60,7 +71,7 @@
     <canvas id="deathDE" class="chart"></canvas>
     <canvas id="deathDEInc" class="chart"></canvas>
   </div>
-  <p id="lastSync"></p>
+
   <script type="text/javascript" src="statesData.js"></script>
   <script src="index.js"></script>
 </body>
