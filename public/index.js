@@ -5,7 +5,7 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-function makeChart(covid, id, label, path, color, type, xAsis) {
+function makeChart(covid, id, label, path, color, type, xAsis, bColor) {
   const mtx = document.getElementById(id).getContext('2d');
   const myChartNew = new Chart(mtx, {
     type: type,
@@ -17,8 +17,8 @@ function makeChart(covid, id, label, path, color, type, xAsis) {
           data: path,
           fill: true,
           borderColor: color,
-          backgroundColor: color,
-          borderWidth: 1,
+          backgroundColor: bColor,
+          borderWidth: 5,
           pointRadius: 0,
         }
       ]
@@ -164,12 +164,12 @@ async function setup() {
   document.getElementById('totalInfGlobal').innerHTML = `Weltweite Infektionen: ${numberWithCommas(covid.global.Global.TotalConfirmed)}`;
   document.getElementById('totalDeathGlobal').innerHTML = `Weltweite Tode: ${numberWithCommas(covid.global.Global.TotalDeaths)}`;
   document.getElementById('totalRecGlobal').innerHTML = `Weltweit genesen: ${numberWithCommas(covid.global.Global.TotalRecovered)}`;
-  makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line', covid.date)
+  makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line', covid.date, 'rgba(255, 99, 132, 0.5)')
   console.log(covid)
   makeDoubleChart(covid, 'deathsAge', 'Covid Tote nach Alter und Geschlecht', covid.deathsAgeSex.deaths.deathsM, 'rgba(255, 99, 132, 1)', 'horizontalBar', covid.deathsAgeSex.ageGroup, covid.deathsAgeSex.deaths.deathsF)
-  makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date)
-  makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date)
-  makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date)
+  makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date, 'rgba(255, 99, 132, 1)')
+  makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date, 'rgba(12, 12, 12, 0.8)')
+  makeChart(covid, 'deathDEInc', 'Covid Deaths Germany Incremental', covid.deathInc, 'rgba(12, 12, 12, 1)', 'bar', covid.date, 'rgba(12, 12, 12, 1)')
   console.log(data.timeStamp)
   document.getElementById('lastSync').innerHTML = data.timeStamp
 
@@ -287,7 +287,7 @@ async function setup() {
           break;
       }
     } catch { }
-    this._div.innerHTML = '<h4>Deutschland Covid19 Daten</h4>' + (props ?
+    this._div.innerHTML = '<h4 id="explainer">Deutschland Covid19 Daten</h4>' + (props ?
       '<b>' + props.name + '</b><br /><b>' + wertInzidenz.toFixed(2).replace('.', ',') + '</b>' + ' (Inzidenzwert)' + '<br />' + '<b>' + numberWithCommas(wertInzidenzAbs) + '</b >' + ' (Fälle letzte 7 Tage)' + '<br /><b>' + numberWithCommas(wertTodAbs) + '</b>' + ' (Tode letzte 7 Tage)' + '</sup > '
       : 'Über Bundesland fahren');
   };
