@@ -22,7 +22,6 @@ function lastSync() {
     + currentdate.getSeconds();
   return datetime
 }
-
 let dayInMilliseconds = 250 * 60 * 60 * 24
 setInterval(function () { getAPI(); }, dayInMilliseconds);
 
@@ -39,11 +38,19 @@ async function getAPI() {
   const de_response = await fetch(de_url);
   const sum_response = await fetch(sum_url);
   const deIncident_response = await fetch(deIncident_url);
-  de_data = await de_response.json();
-  sum_data = await sum_response.json();
-  deIncident_data = await deIncident_response.json();
-  timeStamp = lastSync()
-  console.log('syncinc...')
+  let de_data_temp = await de_response.json();
+  let sum_data_temp = await sum_response.json();
+  let deIncident_data_temp = await deIncident_response.json();
+  let timeStamp_temp = lastSync()
+  if (sum_data_temp.Global.TotalConfirmed !== 0) {
+    de_data = de_data_temp
+    sum_data = sum_data_temp
+    deIncident_data = deIncident_data_temp
+    timeStamp = timeStamp_temp
+    console.log('syncinc...')
+  } else {
+    console.warn('Tried syncing, but received incalid response from: https://api.covid19api.com/summary')
+  }
 }
 
 
