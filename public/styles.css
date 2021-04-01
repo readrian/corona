@@ -37,8 +37,8 @@ html,
     }
 
     .legend i {
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 17px;
       float: left;
       margin-right: 8px;
       margin-bottom: 0px;
@@ -47,8 +47,4 @@ html,
 
     #information {
       text-align: center;
-    }
-
-    #legendSpan {
-      font-size: 16px;
     }

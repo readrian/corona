@@ -421,7 +421,7 @@ async function setup() {
 
     for (let i = 0; i < grades.length; i++) {
       from = grades[i]; to = grades[i + 1]; labels.push('<i style="background:' +
-        getColor(from + 1) + '"></i> ' + '<span id="legendSpan">' + from + (to ? '&ndash;' + to : '+') + '</span>');
+        getColor(from + 1) + '"></i> ' + from + (to ? '&ndash;' + to : '+'));
     } div.innerHTML = labels.join('<br>');
     return div;
   };
