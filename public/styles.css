@@ -63,55 +63,57 @@ html,
     .infections {
       background-color: #E97F7F;
       padding-bottom: 1px;
-      padding-right: 3px;
-      padding-left: 3px;
       border-radius: 5px;
+      display: block
     }
     .recovered {
       background-color: #d1ffd7;
       padding-bottom: 1px;
+      border-radius: 5px;
       padding-right: 3px;
       padding-left: 3px;
-      border-radius: 5px;
+      display: block;
     }
     .death {
       background-color: #212529;
       padding-bottom: 1px;
-      padding-right: 3px;
-      padding-left: 3px;
       border-radius: 5px;
-      color: #FFF
+      color: #FFF;
+      display: block
     }
     
     @media (max-width: 379px) {
-      .cardData{
-        font-size: 4.5vw;
-        text-align: center;
-      }
       .content {
         display: flex;
         flex-direction:row;
         justify-content: center;
+        font-size: 4.5vw;
+        text-align: center;
       }
       .informationHolder{
         margin-left: 1px;
         margin-right: 1px;
       }
+      .head {
+        font-size: 1.1rem
+      }
     }
 
     @media (min-width: 380px) {
-      .cardData{
-        font-size: 5vw;
-        text-align: center;
-      }
       .content {
         display: flex;
         flex-direction: row;
         justify-content: center;
+        font-size: 5vw;
+        text-align: center;
       }
-      .informationHolder{
+      .sections {
+        display: block;
         margin-left: 4px;
         margin-right: 4px;
+      }
+      .head {
+        font-size: 1.4rem
       }
     }
 
@@ -123,54 +125,72 @@ html,
       height: 60vh;
       width: 100%;
       }
-      .cardData {
-      font-size: 1.9vw;
-      display: inline;
-      }
       .content {
         flex-direction: column;
+        font-size: 2vw;
+        display: block;
+        text-align: start;
+      }
+      .tag {
+        display: inline
+      }
+      .data {
+        display: inline;
+        padding-right: 3px;
+        padding-left: 3px;
+      }
+      .head {
+        font-size: 1rem
       }
     }
     @media (min-width: 767px) {
-      .chart-container-double{
-      height: 60vh;
-      width: 100%;
-      } .chart-container{
-      height: 40vh;
-      width: 100%;
-      }
-      .cardData {
-      font-size: 2.2vw;
+        .chart-container-double{
+        height: 60vh;
+        width: 100%;
+        } .chart-container{
+        height: 40vh;
+        width: 100%;
+        }
+        .content {
+        font-size: 2.2vw;
+        }
+        .head {
+          font-size: 1.6rem
+        }
     }
-  }
 
     @media (min-width: 991px) {
-        .cardData {
-        font-size: 2.3vw;
+        .content {
+        font-size: 2vw;
       }
     }
 
     @media (min-width: 1200px) {
-        .cardData {
+        .content {
         font-size: 2vw;
+      }
+      .head {
+        font-size: 1.7rem
       }
     }
     
     @media (min-width: 1400px) {
-        .cardData {
+        .content {
         font-size: 2vw;
       }
     }
 
     @media (min-width: 1700px) {
-        .cardData {
+        .content {
         font-size: 1.7vw;
       }
     }
 
     @media (min-width: 2000px) {
-        .cardData {
+        .content {
         font-size: 2rem;
         display: inline;
       }
     }
+
+    

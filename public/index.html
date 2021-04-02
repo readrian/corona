@@ -43,77 +43,49 @@
 
   <div id='map'></div>
 
-  <div id="information" class="container-xl my-md-4">
-    <div class="row m-2">
-
-      <div class="col-sm mt-2 mx-sm-2 content">
-        <div class="card">
-          <h2 class="mt-2">Coronavirus-Fälle in Deutschland:</h2>
-          <div class="container-fluid px-0 content">
-            <div class="informationHolder">
-              <span id="DEGesamt1" class="cardData infections"></span>
-              <p class="cardData"> Infektionen</p>
+  <div class="row row-cols-sm-3 container-lg mx-auto mt-3">
+    <div class="col-sm">
+      <div class="card px-1">
+        <div class="card-body px-1">
+          <h2 class="head">Coronavirus-Fälle in Deutschland</h2>
+          <div class="content">
+            <div class="sections">
+              <span id="DEGesamt1" class="infections data"></span>
+              <div class="tag">Infektionen</div>
             </div>
-          </div>
-
-          <div class="informationHolder">
-            <span id="DEGesamt2" class="cardData recovered"></span>
-            <p class="cardData"> Genesen</span></p>
-          </div>
-
-          <div class="informationHolder mb-sm-2">
-            <span id="DEGesamt3" class="cardData death"></span>
-            <p class="cardData"> Tode</p>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-sm mt-2 mx-sm-2 content">
-        <div class="card">
-          <h2 class="mt-2">Neuinfektionen in Deutschland:</h2>
-          <div class="container-fluid px-0 content">
-            <div class="informationHolder">
-              <span id="incidentalDE1" class="cardData infections"></span>
-              <p class="cardData"> Infektionen</p>
+            <div class="sections my-sm-1">
+              <span id="DEGesamt2" class="recovered data"></span>
+              <div class="tag">Genesen</div>
             </div>
-
-            <div class="informationHolder">
-              <span id="incidentalDE1" class="cardData recovered"></span>
-              <p class="cardData"> Genesen</span></p>
-            </div>
-
-            <div class="informationHolder mb-sm-2">
-              <span id="incidentalDE1" class="cardData death"></span>
-              <p class="cardData"> Tode</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm mt-2 mx-sm-2 content">
-        <div class="card">
-          <h2 class="mt-2">Weltweit:</h2>
-          <div class="container-fluid px-0 content">
-            <div class="informationHolder">
-              <span id="worldwide1" class="cardData infections"></span>
-              <p class="cardData"> Infektionen</p>
-            </div>
-
-            <div class="informationHolder">
-              <span id="worldwide2" class="cardData recovered"></span>
-              <p class="cardData"> Genesen</span></p>
-            </div>
-
-            <div class="informationHolder mb-sm-2">
-              <span id="worldwide3" class="cardData death"></span>
-              <p class="cardData"> Tode</p>
+            <div class="sections">
+              <span id="DEGesamt3" class="death data"></span>
+              <div class="tag">Verstorben</div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="col-sm">
+      <div class="card px-md-3">
+        <div class="card-body">
+          <h2 class="head">Neuinfektionen in Deutschland</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="card px-md-3">
+        <div class="card-body">
+          <h2 class="head">Weltweit</h2>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+
+
   <div class="chart-container-double container-fluid">
     <canvas class="chart" id="deathsAge"></canvas>
   </div>
