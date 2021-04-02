@@ -90,9 +90,9 @@ html,
         font-size: 4.5vw;
         text-align: center;
       }
-      .informationHolder{
-        margin-left: 1px;
-        margin-right: 1px;
+      .sections{
+        margin-left: 4px;
+        margin-right: 4px;
       }
       .head {
         font-size: 1.1rem
@@ -142,6 +142,9 @@ html,
       .head {
         font-size: 1rem
       }
+      #worldContent {
+        padding-top: 19px
+      }
     }
     @media (min-width: 767px) {
         .chart-container-double{
@@ -157,6 +160,9 @@ html,
         .head {
           font-size: 1.4rem
         }
+        #worldContent {
+        padding-top: 27px
+      }
     }
 
     @media (min-width: 991px) {
@@ -171,6 +177,9 @@ html,
       }
       .head {
         font-size: 1.7rem
+      }
+      #worldContent {
+        padding-top: 32px
       }
     }
     

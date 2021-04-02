@@ -169,14 +169,17 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
 
 async function setup() {
   const covid = await getData();
+  console.log(covid)
   document.getElementById('worldwide1').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalConfirmed)}</b>`;
   document.getElementById('worldwide2').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalRecovered)}</b>`;
   document.getElementById('worldwide3').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalDeaths)}</b>`;
+  document.getElementById('DENeu1').innerHTML = `<b>${numberWithCommas(covid.deGes_data.features[0].attributes.Inz7T)}</b>`;
+  document.getElementById('DENeu2').innerHTML = `<b>+${numberWithCommas(covid.deGes_data.features[0].attributes.AnzFallNeu)}</b>`;
+  document.getElementById('DENeu3').innerHTML = `<b>+${numberWithCommas(covid.deGes_data.features[0].attributes.AnzGenesenNeu)}</b>`;
   document.getElementById('DEGesamt1').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalConfirmed)}</b>`;
   document.getElementById('DEGesamt2').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalRecovered)}</b>`;
   document.getElementById('DEGesamt3').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalDeaths)}</b>`;
   makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line', covid.date, 'rgba(255, 99, 132, 0.5)')
-  console.log(covid)
   makeDoubleChart(covid, 'deathsAge', 'Covid Tote nach Alter und Geschlecht', covid.deathsAgeSex.deaths.deathsM, 'rgba(255, 99, 132, 1)', 'horizontalBar', covid.deathsAgeSex.ageGroup, covid.deathsAgeSex.deaths.deathsF)
   makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date, 'rgba(255, 99, 132, 1)')
   makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date, 'rgba(12, 12, 12, 0.8)')
@@ -465,6 +468,7 @@ async function getData() {
   let global = data.sum_data
   let weekNumber = []
   let deathsAgeSex = data.deathsAgeSex
+  let deGes_data = data.deGes_data
 
   for (let i = 0; i < data.de_data.length; i++) {
     infData.push(data.de_data[i].Confirmed)
@@ -497,7 +501,7 @@ async function getData() {
     }
     weekNumber.push(moment(date[i], "DD-MM-YYYY").week())
   }
-  return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex }
+  return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex, deGes_data }
 }
 
 
