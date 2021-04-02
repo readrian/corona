@@ -187,6 +187,9 @@ html,
         .content {
         font-size: 1.8vw;
       }
+      #NeuContent {
+        padding-top: 32px
+      }
     }
 
     @media (min-width: 1700px) {
