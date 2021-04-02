@@ -60,21 +60,21 @@ html,
       width: 80%;
     }
 
-    #worldwide1 {
+    .infections {
       background-color: #E97F7F;
       padding-bottom: 1px;
       padding-right: 3px;
       padding-left: 3px;
       border-radius: 5px;
     }
-    #worldwide2 {
+    .recovered {
       background-color: #d1ffd7;
       padding-bottom: 1px;
       padding-right: 3px;
       padding-left: 3px;
       border-radius: 5px;
     }
-    #worldwide3 {
+    .death {
       background-color: #212529;
       padding-bottom: 1px;
       padding-right: 3px;
@@ -83,9 +83,35 @@ html,
       color: #FFF
     }
     
-    @media (max-width: 574px) {
+    @media (max-width: 379px) {
+      .cardData{
+        font-size: 4.5vw;
+        text-align: center;
+      }
+      .content {
+        display: flex;
+        flex-direction:row;
+        justify-content: center;
+      }
+      .informationHolder{
+        margin-left: 1px;
+        margin-right: 1px;
+      }
+    }
+
+    @media (min-width: 380px) {
       .cardData{
         font-size: 5vw;
+        text-align: center;
+      }
+      .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      .informationHolder{
+        margin-left: 4px;
+        margin-right: 4px;
       }
     }
 
@@ -98,8 +124,12 @@ html,
       width: 100%;
       }
       .cardData {
-      font-size: 2vw;
-    }
+      font-size: 1.9vw;
+      display: inline;
+      }
+      .content {
+        flex-direction: column;
+      }
     }
     @media (min-width: 767px) {
       .chart-container-double{
@@ -122,12 +152,25 @@ html,
 
     @media (min-width: 1200px) {
         .cardData {
-        font-size: 2.05vw;
+        font-size: 2vw;
       }
     }
     
     @media (min-width: 1400px) {
         .cardData {
-        font-size: 2.2vw;
+        font-size: 2vw;
+      }
+    }
+
+    @media (min-width: 1700px) {
+        .cardData {
+        font-size: 1.7vw;
+      }
+    }
+
+    @media (min-width: 2000px) {
+        .cardData {
+        font-size: 2rem;
+        display: inline;
       }
     }

@@ -172,6 +172,9 @@ async function setup() {
   document.getElementById('worldwide1').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalConfirmed)}</b>`;
   document.getElementById('worldwide2').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalRecovered)}</b>`;
   document.getElementById('worldwide3').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalDeaths)}</b>`;
+  document.getElementById('DEGesamt1').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalConfirmed)}</b>`;
+  document.getElementById('DEGesamt2').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalRecovered)}</b>`;
+  document.getElementById('DEGesamt3').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalDeaths)}</b>`;
   makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line', covid.date, 'rgba(255, 99, 132, 0.5)')
   console.log(covid)
   makeDoubleChart(covid, 'deathsAge', 'Covid Tote nach Alter und Geschlecht', covid.deathsAgeSex.deaths.deathsM, 'rgba(255, 99, 132, 1)', 'horizontalBar', covid.deathsAgeSex.ageGroup, covid.deathsAgeSex.deaths.deathsF)
