@@ -60,7 +60,7 @@ async function getAPI() {
       deIncident_data = deIncident_data_temp
       timeStamp = timeStamp_temp
       deGes_data = deGes_data_temp
-      owid_data = owid_temp
+      owid_data = owid_temp.DEU.data
       console.log('syncinc...')
     } else {
       console.warn('Tried syncing, but received invalid response')
