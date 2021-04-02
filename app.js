@@ -29,6 +29,7 @@ let de_data
 let sum_data
 let deIncident_data
 let deGes_data
+let owid_data
 
 
 
@@ -38,21 +39,28 @@ async function getAPI() {
     const sum_url = `https://api.covid19api.com/summary`;
     const deIncident_url = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronaf%C3%A4lle_in_den_Bundesl%C3%A4ndern/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json`;
     const deGes_url = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json`
+    const owid_url = `https://covid.ourworldindata.org/data/owid-covid-data.json`
+
     const de_response = await fetch(de_url);
     const sum_response = await fetch(sum_url);
     const deIncident_response = await fetch(deIncident_url);
     const deGes_response = await fetch(deGes_url);
+    const owid_response = await fetch(owid_url);
+
     let de_data_temp = await de_response.json();
     let sum_data_temp = await sum_response.json();
     let deIncident_data_temp = await deIncident_response.json();
     let deGes_data_temp = await deGes_response.json();
+    let owid_temp = await owid_response.json();
     let timeStamp_temp = lastSync()
+
     if (sum_data_temp.Global.TotalConfirmed !== 0 && de_data_temp !== undefined) {
       de_data = de_data_temp
       sum_data = sum_data_temp
       deIncident_data = deIncident_data_temp
       timeStamp = timeStamp_temp
       deGes_data = deGes_data_temp
+      owid_data = owid_temp
       console.log('syncinc...')
     } else {
       console.warn('Tried syncing, but received invalid response')
@@ -78,5 +86,5 @@ let deathsAgeSex = {
 app.get('/api', async (request, response) => {
 
 
-  response.json({ de_data, sum_data, deIncident_data, deathsAgeSex, timeStamp, deGes_data })
+  response.json({ de_data, sum_data, deIncident_data, deathsAgeSex, timeStamp, deGes_data, owid_data })
 })

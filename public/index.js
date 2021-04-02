@@ -469,6 +469,7 @@ async function getData() {
   let weekNumber = []
   let deathsAgeSex = data.deathsAgeSex
   let deGes_data = data.deGes_data
+  let owid_data = data.owid_data
 
   for (let i = 0; i < data.de_data.length; i++) {
     infData.push(data.de_data[i].Confirmed)
@@ -501,7 +502,7 @@ async function getData() {
     }
     weekNumber.push(moment(date[i], "DD-MM-YYYY").week())
   }
-  return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex, deGes_data }
+  return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex, deGes_data, owid_data }
 }
 
 
