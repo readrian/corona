@@ -71,6 +71,12 @@ html,
       color: #FFF;
       display: block
     }
+    .impf {
+      background-color: #90e0ef;
+      padding-bottom: 1px;
+      border-radius: 5px;
+      display: block
+    }
     
     @media (max-width: 379px) {
       .content {
@@ -123,6 +129,10 @@ html,
       }
     }
 
+    #impfStand {
+      font-size: 0.8rem
+    }
+
     @media (min-width: 575px) {
       .content {
         flex-direction: column;
@@ -141,7 +151,7 @@ html,
       .head {
         font-size: 1rem
       }
-      #worldContent {
+      #impfContent {
         padding-top: 19px
       }
     }
@@ -152,7 +162,7 @@ html,
         .head {
           font-size: 1.4rem
         }
-        #worldContent {
+        #impfContent {
         padding-top: 27px
       }
     }
@@ -160,6 +170,9 @@ html,
     @media (min-width: 991px) {
         .content {
         font-size: 1.8vw;
+      }
+      #impfContent {
+        padding-top: 27px
       }
     }
 

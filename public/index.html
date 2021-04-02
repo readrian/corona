@@ -91,19 +91,19 @@
       <div class="col-sm my-2">
         <div class="card px-1">
           <div class="card-body px-1">
-            <h2 class="head">Weltweit</h2>
+            <h2 class="head">Impfungen <span id="impfStand"></span></h2>
             <div class="content">
-              <div class="sections" id="worldContent">
-                <span id="worldwide1" class="infections data"></span>
-                <div class="tag">Infektionen</div>
+              <div class="sections" id="impfContent">
+                <span id="impf1" class="impf data"></span>
+                <div class="tag">Voll geimpft</div>
               </div>
               <div class="sections my-sm-1">
-                <span id="worldwide2" class="recovered data"></span>
-                <div class="tag">Genesen</div>
+                <span id="impf2" class="impf data"></span>
+                <div class="tag">Erste Dosis</div>
               </div>
               <div class="sections">
-                <span id="worldwide3" class="death data"></span>
-                <div class="tag">Verstorben</div>
+                <span id="impf3" class="impf data"></span>
+                <div class="tag">Voll geimpft</div>
               </div>
             </div>
           </div>
@@ -111,7 +111,6 @@
       </div>
     </div>
   </div>
-
 
 
   <div class="chart-container-double">
@@ -123,6 +122,31 @@
         Lagebericht des RKI zur Coronavirus-Krankheit-2019
   </div>
   </a></p>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card px-1 col-sm-6">
+        <div class="card-body px-1">
+          <h2 class="head">Weltweit</h2>
+          <div class="content">
+            <div class="sections" id="worldContent">
+              <span id="worldwide1" class="infections data"></span>
+              <div class="tag">Infektionen</div>
+            </div>
+            <div class="sections my-sm-1">
+              <span id="worldwide2" class="recovered data"></span>
+              <div class="tag">Genesen</div>
+            </div>
+            <div class="sections">
+              <span id="worldwide3" class="death data"></span>
+              <div class="tag">Verstorben</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="chart-container container-fluid">
     <canvas id="infectionsDE" class="container-md"></canvas>
     <canvas id="infectionsDEInc" class="container-md"></canvas>
