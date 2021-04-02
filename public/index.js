@@ -154,7 +154,7 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
             var meta = chartInstance.controller.getDatasetMeta(i);
             meta.data.forEach(function (bar, index) {
               var data = dataset.data[index];
-              ctx.fillText(data, bar._model.x + 20, bar._model.y + 7);
+              ctx.fillText(data, bar._model.x + 15, bar._model.y + 7);
             });
           });
         }

@@ -48,17 +48,7 @@ html,
     #lastUpdate {
       font-size: 12px
     }
-    
-    .chart-container {
-      position: relative;
-      height: 50vh;
-      width: 80%;
-    }
-    .chart-container-double {
-      position: relative;
-      height: 60vh;
-      width: 80%;
-    }
+  
 
     .infections {
       background-color: #E97F7F;
@@ -97,6 +87,14 @@ html,
       .head {
         font-size: 1.1rem
       }
+      .chart-container-double{
+        margin-left: 0px;
+        margin-right: 0px;
+        height: 60vh
+      }
+      .chart-container {
+        height: 30vh
+      }
     }
 
     @media (min-width: 380px) {
@@ -115,16 +113,17 @@ html,
       .head {
         font-size: 1.4rem
       }
+      .chart-container {
+        height: 30vh
+      }
+      .chart-container-double{
+        margin-left: 0px;
+        margin-right: 0px;
+        height: 60vh
+      }
     }
 
     @media (min-width: 575px) {
-      .chart-container-double{
-      height: 80vh;
-      width: 100%;
-      } .chart-container{
-      height: 60vh;
-      width: 100%;
-      }
       .content {
         flex-direction: column;
         font-size: 1.8vw;
@@ -147,13 +146,6 @@ html,
       }
     }
     @media (min-width: 767px) {
-        .chart-container-double{
-        height: 60vh;
-        width: 100%;
-        } .chart-container{
-        height: 40vh;
-        width: 100%;
-        }
         .content {
         font-size: 2.1vw;
         }
