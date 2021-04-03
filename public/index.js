@@ -17,7 +17,6 @@ function makeChart(covid, id, label, path, color, type, xAsis, bColor) {
     }
     colors[i] = colorNew
   }
-  console.log(colors)
   const myChartNew = new Chart(mtx, {
     type: type,
     data: {
@@ -207,11 +206,11 @@ async function setup() {
   document.getElementById('worldwide2').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalRecovered)}</b>`;
   document.getElementById('worldwide3').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalDeaths)}</b>`;
   makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line', covid.date, 'rgba(255, 99, 132, 0.5)')
-  makeChart(covid, 'repRate', 'R0-Wert', covid.rep, 'rgba(255, 99, 132, 1)', 'bar', covid.repDate, 'rgba(255, 99, 132, 1)')
+  makeChart(covid, 'repRate', 'R-Wert', covid.rep, 'rgba(255, 99, 132, 1)', 'bar', covid.repDate, 'rgba(255, 99, 132, 1)')
   let temp3 = covid.rep[covid.rep.length - 1]
   temp3 = temp3.toString()
   temp3 = temp3.replace('.', ',')
-  document.getElementById('r0Current').innerHTML = `R0-Wert: ${temp3}`
+  document.getElementById('r0Current').innerHTML = `R-Wert: ${temp3}`
   document.getElementById('r0Stand').innerHTML = `Stand: ${covid.repDate[covid.repDate.length - 1]}`
   makeDoubleChart(covid, 'deathsAge', 'Covid Tote nach Alter und Geschlecht', covid.deathsAgeSex.deaths.deathsM, 'rgba(255, 99, 132, 1)', 'horizontalBar', covid.deathsAgeSex.ageGroup, covid.deathsAgeSex.deaths.deathsF)
   makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date, 'rgba(255, 99, 132, 1)')
@@ -514,8 +513,12 @@ async function getData() {
     }
   }
 
-  owid_data = data.owid_data[data.owid_data.length - 3]
-
+  for (let i = data.owid_data.length - 1; owid_data.people_fully_vaccinated === undefined; i--) {
+    if (data.owid_data[i].people_fully_vaccinated !== undefined) {
+      owid_data = data.owid_data[i]
+      break;
+    }
+  }
 
 
   for (let i = 0; i < data.de_data.length; i++) {
