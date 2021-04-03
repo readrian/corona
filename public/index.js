@@ -8,14 +8,19 @@ function numberWithCommas(x) {
 function makeChart(covid, id, label, path, color, type, xAsis, bColor) {
   const mtx = document.getElementById(id).getContext('2d');
   var colors = []
+  var bColors = []
   for (var i = 0; i < path.length; i++) {
     var colorNew;
+    var colorNewB;
     if (path[i] < 1 && id === 'repRate') {
       colorNew = '#52b788'
+      colorNewB = '#52b788'
     } else {
       colorNew = color
+      colorNewB = bColor
     }
     colors[i] = colorNew
+    bColors[i] = colorNewB
   }
   const myChartNew = new Chart(mtx, {
     type: type,
@@ -27,7 +32,7 @@ function makeChart(covid, id, label, path, color, type, xAsis, bColor) {
           data: path,
           fill: true,
           borderColor: colors,
-          backgroundColor: colors,
+          backgroundColor: bColors,
           borderWidth: 5,
           pointRadius: 0,
         }
