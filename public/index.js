@@ -7,6 +7,17 @@ function numberWithCommas(x) {
 
 function makeChart(covid, id, label, path, color, type, xAsis, bColor) {
   const mtx = document.getElementById(id).getContext('2d');
+  var colors = []
+  for (var i = 0; i < path.length; i++) {
+    var colorNew;
+    if (path[i] < 1 && id === 'repRate') {
+      colorNew = '#52b788'
+    } else {
+      colorNew = color
+    }
+    colors[i] = colorNew
+  }
+  console.log(colors)
   const myChartNew = new Chart(mtx, {
     type: type,
     data: {
@@ -16,8 +27,8 @@ function makeChart(covid, id, label, path, color, type, xAsis, bColor) {
           label: label,
           data: path,
           fill: true,
-          borderColor: color,
-          backgroundColor: bColor,
+          borderColor: colors,
+          backgroundColor: colors,
           borderWidth: 5,
           pointRadius: 0,
         }
@@ -193,6 +204,11 @@ async function setup() {
   document.getElementById('worldwide2').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalRecovered)}</b>`;
   document.getElementById('worldwide3').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalDeaths)}</b>`;
   makeChart(covid, 'infectionsDE', 'Covid Infections Germany', covid.infData, 'rgba(255, 99, 132, 1)', 'line', covid.date, 'rgba(255, 99, 132, 0.5)')
+  makeChart(covid, 'repRate', 'R0-Wert', covid.rep, 'rgba(255, 99, 132, 1)', 'bar', covid.repDate, 'rgba(255, 99, 132, 1)')
+  let temp3 = covid.rep[covid.rep.length - 1]
+  temp3 = temp3.toString()
+  temp3 = temp3.replace('.', ',')
+  document.getElementById('r0Current').innerHTML = `R0-Wert: ${temp3}`
   makeDoubleChart(covid, 'deathsAge', 'Covid Tote nach Alter und Geschlecht', covid.deathsAgeSex.deaths.deathsM, 'rgba(255, 99, 132, 1)', 'horizontalBar', covid.deathsAgeSex.ageGroup, covid.deathsAgeSex.deaths.deathsF)
   makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date, 'rgba(255, 99, 132, 1)')
   makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date, 'rgba(12, 12, 12, 0.8)')
@@ -482,7 +498,21 @@ async function getData() {
   let weekNumber = []
   let deathsAgeSex = data.deathsAgeSex
   let deGes_data = data.deGes_data
-  let owid_data = data.owid_data[data.owid_data.length - 3]
+  let owid_data = data.owid_data
+  let rep = []
+  let repDate = []
+
+  for (let i = 0; i < owid_data.length; i++) {
+    if (owid_data[i].reproduction_rate !== undefined) {
+      rep.push(owid_data[i].reproduction_rate)
+      let day = owid_data[i].date.split(/[T-]+/)
+      repDate.push(`${day[2]}.${day[1]}.${day[0]}`)
+    }
+  }
+
+  owid_data = data.owid_data[data.owid_data.length - 3]
+
+
 
   for (let i = 0; i < data.de_data.length; i++) {
     infData.push(data.de_data[i].Confirmed)
@@ -516,7 +546,7 @@ async function getData() {
     weekNumber.push(moment(date[i], "DD-MM-YYYY").week())
   }
 
-  return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex, deGes_data, owid_data }
+  return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex, deGes_data, rep, repDate, owid_data }
 }
 
 

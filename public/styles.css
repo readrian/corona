@@ -11,11 +11,6 @@ html,
       margin-left: auto;
     }
 
-    /* #map {
-      width: 800px;
-      height: 500px;
-    } */
-
     .info {
       padding: 6px 8px;
       font: 14px/16px Arial, Helvetica, sans-serif;
@@ -43,6 +38,11 @@ html,
       margin-right: 8px;
       margin-bottom: 0px;
       opacity: 0.7;
+    }
+
+    #r0Current {
+      margin-right: auto;
+      margin-left: auto;
     }
 
     #lastUpdate {
