@@ -482,7 +482,7 @@ async function getData() {
   let weekNumber = []
   let deathsAgeSex = data.deathsAgeSex
   let deGes_data = data.deGes_data
-  let owid_data = data.owid_data[data.owid_data.length - 2]
+  let owid_data = data.owid_data[data.owid_data.length - 3]
 
   for (let i = 0; i < data.de_data.length; i++) {
     infData.push(data.de_data[i].Confirmed)
