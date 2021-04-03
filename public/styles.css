@@ -50,6 +50,11 @@ html,
     #lastUpdate {
       font-size: 12px
     }
+
+    #covidIcon {
+      margin-bottom: 8px;
+      margin-left: 5px
+    }
   
 
     .infections {
