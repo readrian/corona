@@ -181,7 +181,10 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
 async function setup() {
   const covid = await getData();
   console.log(covid)
-  document.getElementById('DENeu1').innerHTML = `<b>${numberWithCommas(covid.deGes_data.features[0].attributes.Inz7T)}</b>`;
+  let temp4 = covid.deGes_data.features[0].attributes.Inz7T
+  temp4 = temp4.toString()
+  temp4 = temp4.replace('.', ',')
+  document.getElementById('DENeu1').innerHTML = `<b>${temp4}</b>`;
   document.getElementById('DENeu2').innerHTML = `<b>+${numberWithCommas(covid.deGes_data.features[0].attributes.AnzFallNeu)}</b>`;
   document.getElementById('DENeu3').innerHTML = `<b>+${numberWithCommas(covid.deGes_data.features[0].attributes.AnzGenesenNeu)}</b>`;
   document.getElementById('DEGesamt1').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalConfirmed)}</b>`;
