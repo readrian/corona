@@ -209,6 +209,7 @@ async function setup() {
   temp3 = temp3.toString()
   temp3 = temp3.replace('.', ',')
   document.getElementById('r0Current').innerHTML = `R0-Wert: ${temp3}`
+  document.getElementById('r0Stand').innerHTML = `Stand: ${covid.repDate[covid.repDate.length - 1]}`
   makeDoubleChart(covid, 'deathsAge', 'Covid Tote nach Alter und Geschlecht', covid.deathsAgeSex.deaths.deathsM, 'rgba(255, 99, 132, 1)', 'horizontalBar', covid.deathsAgeSex.ageGroup, covid.deathsAgeSex.deaths.deathsF)
   makeChart(covid, 'infectionsDEInc', 'Covid Infections Germany Incremental', covid.infDataInc, 'rgba(255, 99, 132, 1)', 'bar', covid.date, 'rgba(255, 99, 132, 1)')
   makeChart(covid, 'deathDE', 'Covid Deaths Germany', covid.death, 'rgba(12, 12, 12, 1)', 'line', covid.date, 'rgba(12, 12, 12, 0.8)')

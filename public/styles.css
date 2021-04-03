@@ -40,9 +40,11 @@ html,
       opacity: 0.7;
     }
 
-    #r0Current {
+    .r0 {
       margin-right: auto;
       margin-left: auto;
+      margin-bottom: 2px;
+      margin-top: 3px
     }
 
     #lastUpdate {
