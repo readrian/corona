@@ -1,5 +1,22 @@
 const express = require('express');
 const fetch = require('node-fetch');
+const fs = require('fs');
+const { json } = require('express');
+
+function jsonReader(filePath, cb) {
+  fs.readFile(filePath, 'utf-8', (err, fileData) => {
+    if (err) {
+      return cb && cb(err)
+    }
+    try {
+      const object = JSON.parse(fileData)
+      return cb && cb(null, object)
+    } catch (err) {
+      return cb && cb(err)
+    }
+  })
+}
+
 getAPI()
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,6 +39,7 @@ function lastSync() {
     + currentdate.getSeconds();
   return datetime
 }
+
 let dayInMilliseconds = 250 * 60 * 60 * 24
 setInterval(function () { getAPI(); }, dayInMilliseconds);
 
@@ -30,6 +48,7 @@ let sum_data
 let deIncident_data
 let deGes_data
 let owid_data
+let inzPrevDay
 
 
 
@@ -61,6 +80,33 @@ async function getAPI() {
       timeStamp = timeStamp_temp
       deGes_data = deGes_data_temp
       owid_data = owid_temp.DEU.data
+
+      jsonReader('inzidenz.json', (err, data) => {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(data)
+          inzPrevDay = data.oldInc
+          if (data.newTotal !== deGes_data.features[0].attributes.AnzFall) {
+            const lastInz = {
+              oldTotal: data.newTotal,
+              oldInc: data.newInc,
+              newTotal: deGes_data.features[0].attributes.AnzFall,
+              newInc: deGes_data.features[0].attributes.Inz7T,
+            };
+            const jsonString = JSON.stringify(lastInz)
+
+            fs.writeFile('inzidenz.json', JSON.stringify(lastInz), err => {
+              if (err) {
+                console.log(err)
+              } else {
+                console.log('File successfully written!')
+              }
+            })
+          }
+        }
+      })
+
       console.log('syncinc...')
     } else {
       console.warn('Tried syncing, but received invalid response')
@@ -68,7 +114,10 @@ async function getAPI() {
   } catch (error) {
     console.warn(`Tried syncing, but received invalid response: ${error}`)
   }
+
 }
+
+
 
 let deathsM = [5863, 17473, 9473, 4146, 1433, 285, 90, 32, 3, 3]
 let deathsF = [11472, 17420, 5288, 1808, 599, 144, 51, 21, 0, 7]
@@ -86,5 +135,5 @@ let deathsAgeSex = {
 app.get('/api', async (request, response) => {
 
 
-  response.json({ de_data, sum_data, deIncident_data, deathsAgeSex, timeStamp, deGes_data, owid_data })
+  response.json({ de_data, sum_data, deIncident_data, deathsAgeSex, timeStamp, deGes_data, owid_data, inzPrevDay })
 })

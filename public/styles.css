@@ -55,6 +55,14 @@ html,
       margin-bottom: 8px;
       margin-left: 5px
     }
+
+    #inz3 {
+      padding-bottom: 1px;
+      border-radius: 5px;
+      padding-right: 3px;
+      padding-left: 3px;
+      display: block;
+    }
   
 
     .infections {

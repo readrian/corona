@@ -198,8 +198,17 @@ async function setup() {
   temp4 = temp4.toString()
   temp4 = temp4.replace('.', ',')
   document.getElementById('inz1').innerHTML = `<b>${temp4}</b>`;
-  document.getElementById('inz2').innerHTML = `<b>${numberWithCommas(134)}</b>`;
-  document.getElementById('inz3').innerHTML = `<b>${numberWithCommas(-7)}</b>`;
+  document.getElementById('inz2').innerHTML = `<b>${numberWithCommas(covid.inzPrevDay)}</b>`;
+  let prefix
+  if (temp4 - covid.inzPrevDay < 0) {
+    document.getElementById('inz3').style.backgroundColor = '#d1ffd7'
+    prefix = ''
+  }
+  else {
+    document.getElementById('inz3').style.backgroundColor = '#E97F7F'
+    prefix = '+'
+  }
+  document.getElementById('inz3').innerHTML = `<b>${prefix}${numberWithCommas(temp4 - covid.inzPrevDay)}</b>`;
 
   let temp1 = covid.owid_data.people_fully_vaccinated_per_hundred
   temp1 = temp1.toString();
@@ -515,6 +524,7 @@ async function getData() {
   let owid_data = data.owid_data
   let rep = []
   let repDate = []
+  let inzPrevDay = data.inzPrevDay
 
   for (let i = 0; i < owid_data.length; i++) {
     if (owid_data[i].reproduction_rate !== undefined) {
@@ -563,8 +573,8 @@ async function getData() {
     }
     weekNumber.push(moment(date[i], "DD-MM-YYYY").week())
   }
-
-  return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex, deGes_data, rep, repDate, owid_data }
+  console.log(inzPrevDay)
+  return { date, infData, death, global, weekNumber, deathInc, infDataInc, deathsAgeSex, deGes_data, rep, repDate, owid_data, inzPrevDay }
 }
 
 
