@@ -496,7 +496,7 @@ async function setup() {
 async function getData() {
   const response = await fetch('/api');
   data = await response.json();
-  // console.log(data)
+  console.log(data)
   let infData = []
   let infDataInc = []
   let date = []
