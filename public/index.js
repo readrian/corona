@@ -185,15 +185,21 @@ function makeDoubleChart(covid, id, label, path, color, type, xAsis, pathF) {
 async function setup() {
   const covid = await getData();
   console.log(covid)
-  let temp4 = covid.deGes_data.features[0].attributes.Inz7T
-  temp4 = temp4.toString()
-  temp4 = temp4.replace('.', ',')
-  document.getElementById('DENeu1').innerHTML = `<b>${temp4}</b>`;
-  document.getElementById('DENeu2').innerHTML = `<b>+${numberWithCommas(covid.deGes_data.features[0].attributes.AnzFallNeu)}</b>`;
-  document.getElementById('DENeu3').innerHTML = `<b>+${numberWithCommas(covid.deGes_data.features[0].attributes.AnzGenesenNeu)}</b>`;
+
   document.getElementById('DEGesamt1').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalConfirmed)}</b>`;
   document.getElementById('DEGesamt2').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalRecovered)}</b>`;
   document.getElementById('DEGesamt3').innerHTML = `<b>${numberWithCommas(covid.global.Countries[63].TotalDeaths)}</b>`;
+
+  document.getElementById('DENeu1').innerHTML = `<b>+${numberWithCommas(covid.deGes_data.features[0].attributes.AnzFallNeu)}</b>`;
+  document.getElementById('DENeu2').innerHTML = `<b>+${numberWithCommas(covid.deGes_data.features[0].attributes.AnzGenesenNeu)}</b>`;
+  document.getElementById('DENeu3').innerHTML = `<b>+${numberWithCommas(covid.deGes_data.features[0].attributes.AnzTodesfallNeu)}</b>`;
+
+  let temp4 = covid.deGes_data.features[0].attributes.Inz7T
+  temp4 = temp4.toString()
+  temp4 = temp4.replace('.', ',')
+  document.getElementById('inz1').innerHTML = `<b>${temp4}</b>`;
+  document.getElementById('inz2').innerHTML = `<b>${numberWithCommas(134)}</b>`;
+  document.getElementById('inz3').innerHTML = `<b>${numberWithCommas(-7)}</b>`;
 
   let temp1 = covid.owid_data.people_fully_vaccinated_per_hundred
   temp1 = temp1.toString();
@@ -471,7 +477,7 @@ async function setup() {
     onEachFeature: onEachFeature
   }).addTo(map);
 
-  map.attributionControl.addAttribution('Daten von &copy; <a href="https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0/geoservice">COVID-19 Datenhub</a>');
+  map.attributionControl.addAttribution('Daten von <a href="https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0/geoservice">COVID-19 Datenhub</a>');
 
 
   let legend = L.control({ position: 'bottomright' });
