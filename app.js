@@ -85,7 +85,6 @@ async function getAPI() {
         if (err) {
           console.log(err)
         } else {
-          console.log(data)
           inzPrevDay = data.oldInc
           if (data.newTotal !== deGes_data.features[0].attributes.AnzFall) {
             const lastInz = {
@@ -104,7 +103,6 @@ async function getAPI() {
               }
             })
             inzPrevDay = data.oldInc
-            console.log(data.oldInc)
             console.log('kleiner')
           }
         }
@@ -115,7 +113,6 @@ async function getAPI() {
           if (err) {
             console.log(err)
           } else {
-            console.log(data)
             inzPrevDay = data.oldInc
           }
         })

@@ -165,9 +165,6 @@ html,
       .head {
         font-size: 1rem
       }
-      #impfContent {
-        padding-top: 19px
-      }
     }
     @media (min-width: 767px) {
         .content {
@@ -176,17 +173,11 @@ html,
         .head {
           font-size: 1.4rem
         }
-        #impfContent {
-        padding-top: 27px
-      }
     }
 
     @media (min-width: 991px) {
         .content {
         font-size: 1.8vw;
-      }
-      #impfContent {
-        padding-top: 27px
       }
     }
 
@@ -196,9 +187,6 @@ html,
       }
       .head {
         font-size: 1.7rem
-      }
-      #worldContent {
-        padding-top: 32px
       }
     }
     
