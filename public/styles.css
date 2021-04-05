@@ -63,6 +63,9 @@ html,
       padding-left: 3px;
     }
   
+    .inzidenz {
+      display:block
+    }
 
     .infections {
       background-color: #E97F7F;
