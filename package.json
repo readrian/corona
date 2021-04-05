@@ -14,5 +14,10 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "node-fetch": "^2.6.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "inzidenz.json"
+    ]
   }
 }
