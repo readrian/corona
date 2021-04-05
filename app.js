@@ -98,14 +98,28 @@ async function getAPI() {
 
             fs.writeFile('inzidenz.json', JSON.stringify(lastInz), err => {
               if (err) {
-                console.log(err)
+                console.log(err);
               } else {
-                console.log('File successfully written!')
+                console.log('File successfully written!');
               }
             })
+            inzPrevDay = data.oldInc
+            console.log(data.oldInc)
+            console.log('kleiner')
           }
         }
       })
+
+      setTimeout(function () {
+        jsonReader('inzidenz.json', (err, data) => {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log(data)
+            inzPrevDay = data.oldInc
+          }
+        })
+      }, 50);
 
       console.log('syncinc...')
     } else {
