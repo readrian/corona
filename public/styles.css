@@ -121,7 +121,7 @@ html,
       .content {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-evenly;
         font-size: 4.5vw;
         text-align: center;
       }
@@ -165,6 +165,9 @@ html,
       .head {
         font-size: 1rem
       }
+      #InzContent{
+        padding-top: 18px
+      }
     }
     @media (min-width: 767px) {
         .content {
@@ -172,6 +175,9 @@ html,
         }
         .head {
           font-size: 1.4rem
+        }
+        #InzContent {
+        padding-top: 26px
         }
     }
 
@@ -187,6 +193,9 @@ html,
       }
       .head {
         font-size: 1.7rem
+      }
+      #InzContent {
+        padding-top: 32px
       }
     }
     
