@@ -64,22 +64,23 @@
   <div id='map'></div>
   <div class="container-lg">
     <div class="row row-cols-sm-3 mx-auto mt-3">
+
       <div class="col-sm my-2">
         <div class="card px-1">
           <div class="card-body px-1">
-            <h2 class="head">Coronavirus-Fälle in Deutschland</h2>
+            <h2 class="head">Impfungen <span id="impfStand"></span></h2>
             <div class="content">
-              <div class="sections">
-                <span id="DEGesamt1" class="infections data"></span>
-                <div class="tag">Infektionen</div>
+              <div class="sections" id="impfContent">
+                <span id="impf1" class="impf data"></span>
+                <div class="tag">Voll geimpft</div>
               </div>
               <div class="sections my-sm-1">
-                <span id="DEGesamt2" class="recovered data px-1"></span>
-                <div class="tag">Genesen</div>
+                <span id="impf2" class="impf data px-1"></span>
+                <div class="tag">Erste Dosis</div>
               </div>
               <div class="sections">
-                <span id="DEGesamt3" class="death data"></span>
-                <div class="tag">Verstorben</div>
+                <span id="impf3" class="impf data px-1"></span>
+                <div class="tag">Voll geimpft</div>
               </div>
             </div>
           </div>
@@ -89,7 +90,7 @@
       <div class="col-sm my-2">
         <div class="card px-1">
           <div class="card-body px-1">
-            <h2 class="head">Neuinfektionen in Deutschland</h2>
+            <h2 class="head">Neuinfektionen Deutschland</h2>
             <div class="content">
               <div class="sections" id="NeuContent">
                 <span id="DENeu1" class="infections data px-1"></span>
@@ -147,7 +148,7 @@
     <div class="row row-cols-sm mx-auto mt-3">
       <div class="col-sm my-2">
         <div class="card px-1">
-          <div class="card-body px-1 py-1">
+          <div class="card-body px-1">
             <h2 class="head">Weltweit</h2>
             <div class="content">
               <div class="sections" id="worldContent">
@@ -169,23 +170,25 @@
 
       <div class="col-sm my-2">
         <div class="card px-1">
-          <div class="card-body px-1 py-1">
-            <h2 class="head">Impfungen <span id="impfStand"></span></h2>
+          <div class="card-body px-1">
+            <h2 class="head">Fälle in Deutschland</h2>
             <div class="content">
-              <div class="sections" id="impfContent">
-                <span id="impf1" class="impf data px-1"></span>
-                <div class="tag">Voll geimpft</div>
+              <div class="sections">
+                <span id="DEGesamt1" class="infections data"></span>
+                <div class="tag">Infektionen</div>
               </div>
               <div class="sections my-sm-1">
-                <span id="impf2" class="impf data px-1"></span>
-                <div class="tag">Erste Dosis</div>
+                <span id="DEGesamt2" class="recovered data px-1"></span>
+                <div class="tag">Genesen</div>
               </div>
               <div class="sections">
-                <span id="impf3" class="impf data px-1"></span>
-                <div class="tag">Voll geimpft</div>
+                <span id="DEGesamt3" class="death data"></span>
+                <div class="tag">Verstorben</div>
               </div>
             </div>
           </div>
+
+
         </div>
       </div>
     </div>

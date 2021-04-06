@@ -219,7 +219,10 @@ async function setup() {
   document.getElementById('impf1').innerHTML = `<b>${temp1}%</b>`;
   document.getElementById('impf2').innerHTML = `<b>${temp2}%</b>`;
   document.getElementById('impf3').innerHTML = `<b>${numberWithCommas(covid.owid_data.people_fully_vaccinated)}</b>`;
-  document.getElementById('impfStand').innerHTML = `Stand: ${covid.owid_data.date}</b>`;
+  let impfStand = covid.owid_data.date.split(/[T-]+/)
+  let impfDate = []
+  impfDate.push(`${impfStand[2]}.${impfStand[1]}.${impfStand[0]}`)
+  document.getElementById('impfStand').innerHTML = `Stand: ${impfDate}</b>`;
 
 
   document.getElementById('worldwide1').innerHTML = `<b>${numberWithCommas(covid.global.Global.TotalConfirmed)}</b>`;

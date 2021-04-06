@@ -171,6 +171,12 @@ html,
       #InzContent{
         padding-top: 18px
       }
+      #impfStand {
+      font-size: 0.5rem
+      }  
+      #impfContent {
+        padding-top: 18px
+      }
     }
     @media (min-width: 767px) {
         .content {
@@ -180,6 +186,9 @@ html,
           font-size: 1.4rem
         }
         #InzContent {
+        padding-top: 26px
+        }
+         #impfContent {
         padding-top: 26px
         }
     }
@@ -200,6 +209,12 @@ html,
       #InzContent {
         padding-top: 32px
       }
+      #NeuContent {
+        padding-top: 0px
+      }
+       #impfContent {
+        padding-top: 32px
+        }
     }
     
     @media (min-width: 1400px) {
@@ -209,6 +224,7 @@ html,
       #NeuContent {
         padding-top: 32px
       }
+
     }
 
     @media (min-width: 1700px) {
