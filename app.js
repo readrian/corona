@@ -40,7 +40,7 @@ function lastSync() {
   return datetime
 }
 
-let dayInMilliseconds = 250 * 60 * 60 * 24
+let dayInMilliseconds = 1000 * 60 * 60
 setInterval(function () { getAPI(); }, dayInMilliseconds);
 
 let de_data
