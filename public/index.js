@@ -200,7 +200,7 @@ async function setup() {
   document.getElementById('inz1').innerHTML = `<b>${temp4}</b>`;
   document.getElementById('inz2').innerHTML = `<b>${numberWithCommas(covid.inzPrevDay)}</b>`;
   let prefix
-  if (temp4 - covid.inzPrevDay < 0) {
+  if (covid.deGes_data.features[0].attributes.Inz7T - covid.inzPrevDay < 0) {
     document.getElementById('inz3').style.backgroundColor = '#d1ffd7'
     prefix = ''
   }
@@ -208,7 +208,12 @@ async function setup() {
     document.getElementById('inz3').style.backgroundColor = '#E97F7F'
     prefix = '+'
   }
-  document.getElementById('inz3').innerHTML = `<b>${prefix}${numberWithCommas(temp4 - covid.inzPrevDay)}</b>`;
+  temp5 = covid.deGes_data.features[0].attributes.Inz7T - covid.inzPrevDay
+  temp5 = temp5.toFixed(1)
+  temp5 = temp5.toString()
+  temp5 = temp5.replace('.', ',')
+
+  document.getElementById('inz3').innerHTML = `<b>${prefix}${temp5}</b>`;
 
   let temp1 = covid.owid_data.people_fully_vaccinated_per_hundred
   temp1 = temp1.toString();
