@@ -198,7 +198,10 @@ async function setup() {
   temp4 = temp4.toString()
   temp4 = temp4.replace('.', ',')
   document.getElementById('inz1').innerHTML = `<b>${temp4}</b>`;
-  document.getElementById('inz2').innerHTML = `<b>${numberWithCommas(covid.inzPrevDay)}</b>`;
+  let temp5 = covid.inzPrevDay
+  temp5 = temp5.toString()
+  temp5 = temp5.replace('.', ',')
+  document.getElementById('inz2').innerHTML = `<b>${temp5}</b>`;
   let prefix
   if (covid.deGes_data.features[0].attributes.Inz7T - covid.inzPrevDay < 0) {
     document.getElementById('inz3').style.backgroundColor = '#d1ffd7'
